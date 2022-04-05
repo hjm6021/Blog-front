@@ -11,3 +11,7 @@ export const check = () => {
 export const logout = () => {
     return client.post('/auth/logout', '', { withCredentials: true });
 };
+
+export const register = ({ username, password }) => {
+    return client.post('/auth/register', { username, password }, { withCredentials: true });
+};

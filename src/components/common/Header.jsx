@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from './Button';
 import Responsive from './Responsive';
+import palette from '../../lib/styles/palette';
 
 const HeaderBlock = styled.div`
     position: fixed;
@@ -19,6 +20,12 @@ const Wrapper = styled(Responsive)`
         font-size: 1.125rem;
         font-weight: 800;
         letter-spacing: 2px;
+    }
+    .menu {
+        font-size: 1.125rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: ${palette.cyan[9]};
     }
     .right {
         display: flex;
@@ -41,14 +48,26 @@ const Header = ({ user, onLogout }) => {
                     <Link to="/" className="logo">
                         Han's Blog
                     </Link>
+
+                    <Link to="/posts" className="menu">
+                        Posts
+                    </Link>
+                    <Link to="/about" className="menu">
+                        AboutMe
+                    </Link>
                     {user ? (
                         <div className="right">
-                            <UserInfo>{user.username}</UserInfo>
-                            <Button onClick={onLogout}>로그아웃</Button>
+                            <UserInfo>
+                                {user.username} ({user.isAdmin ? 'ADMIN' : 'USER'})
+                            </UserInfo>
+                            {user.isAdmin ? <Button to="/register">Register</Button> : null}
+                            <Button style={{ marginLeft: '0.75rem' }} onClick={onLogout}>
+                                LogOut
+                            </Button>
                         </div>
                     ) : (
                         <div className="right">
-                            <Button to="/login">로그인</Button>
+                            <Button to="/login">LogIn</Button>
                         </div>
                     )}
                 </Wrapper>

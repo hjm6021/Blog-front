@@ -1,11 +1,11 @@
-import Home from '../components/home/Home';
+import HomeContainer from '../containers/home/HomeContainer';
 import HeaderContainer from '../containers/common/HeaderContainer';
 
 const HomePage = () => {
     return (
         <>
             <HeaderContainer />
-            <Home />
+            <HomeContainer />
         </>
     );
 };

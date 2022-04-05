@@ -35,7 +35,8 @@ const ErrorMessage = styled.div`
 
 const Footer = styled.div`
     margin-top: 2rem;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
     a {
         color: ${palette.gray[6]};
         text-decoration: underline;
@@ -45,15 +46,22 @@ const Footer = styled.div`
     }
 `;
 
-const AuthForm = ({ form, onChange, onSubmit, error, onGoBack }) => {
-    const text = 'LOGIN';
+const textMap = {
+    login: 'LOGIN',
+    register: 'REGISTER',
+};
 
+const AuthForm = ({ type, form, onChange, onSubmit, error, onGoBack }) => {
+    const text = textMap[type];
     return (
         <AuthFormBlock>
             <h3>{text}</h3>
             <form onSubmit={onSubmit}>
                 <StyledInput name="username" value={form.username} placeholder="ID" onChange={onChange} />
                 <StyledInput name="password" value={form.password} type="password" placeholder="Password" onChange={onChange} />
+                {type === 'register' && (
+                    <StyledInput name="passwordConfirm" type="password" value={form.passwordConfirm} placeholder="Confirm Password" onChange={onChange} />
+                )}
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Button cyan={true} fullWidth={true} style={{ marginTop: '1rem' }}>
                     {text}

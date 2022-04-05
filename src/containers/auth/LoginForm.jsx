@@ -26,7 +26,7 @@ const LoginForm = () => {
         dispatch(login({ username, password }));
     };
     const onGoBack = () => {
-        navigate(-1);
+        navigate('/');
     };
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const LoginForm = () => {
 
     return (
         <div>
-            <AuthForm form={form} onChange={onChange} onSubmit={onSubmit} error={error} onGoBack={onGoBack} />
+            <AuthForm type="login" form={form} onChange={onChange} onSubmit={onSubmit} error={error} onGoBack={onGoBack} />
         </div>
     );
 };
