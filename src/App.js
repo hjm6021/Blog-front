@@ -5,6 +5,10 @@ import { Helmet } from 'react-helmet-async';
 import RegisterPage from './pages/RegisterPage';
 import HomeEditPage from './pages/HomeEditPage';
 import PostListPage from './pages/PostListPage';
+import PostWritePage from './pages/PostWritePage';
+import PostPage from './pages/PostPage';
+import AboutPage from './pages/AboutPage';
+import AboutEditPage from './pages/AboutEditPage';
 
 const App = () => {
     return (
@@ -17,7 +21,11 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/home/edit" element={<HomeEditPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/about/edit" element={<AboutEditPage />} />
                 <Route path="/posts" element={<PostListPage />} />
+                <Route path="/posts/write" element={<PostWritePage />} />
+                <Route path="/posts/:postId" element={<PostPage />} />
             </Routes>
         </div>
     );

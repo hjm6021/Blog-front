@@ -28,6 +28,7 @@ const PostItemBlock = styled.div`
         font-size: 2rem;
         margin-bottom: 0;
         margin-top: 0;
+        color: ${palette.cyan[9]};
         &:hover {
             color: ${palette.gray[6]};
         }
@@ -69,33 +70,23 @@ const PostItem = ({ post }) => {
             </h2>
             <SubInfo user={user} publishedDate={new Date(publishedDate.$date).toLocaleDateString()} />
             <Tags tags={tags} />
-            <MDEditor.Markdown style={{ marginTop: '2rem' }} source={body} />
+            <MDEditor.Markdown style={{ marginTop: '2rem' }} source={body.slice(0, 200)} />
         </PostItemBlock>
     );
 };
 
-const PostList = ({ posts, error, user }) => {
-    const tags =
-        posts &&
-        posts
-            .map((post) => {
-                return post.tags;
-            })
-            .flat();
-
-    const tagsWithoutDuplication = tags && tags.filter((item, index) => tags.indexOf(item) === index);
-
+const PostList = ({ posts, tags, error, user }) => {
     return (
         <PostListBlock>
             {error && <ErrorMessage>{error.message}</ErrorMessage>}
             <TopWrapper>
                 <TagsWrapper>
                     <div className="tagLogo">Tag : </div>
-                    {tagsWithoutDuplication && <Tags tags={tagsWithoutDuplication} />}
+                    <Tags tags={tags} />
                 </TagsWrapper>
                 <WritePostButtonWrapper>
                     {user && user.isAdmin && (
-                        <Button cyan to="/write">
+                        <Button cyan to="write">
                             New Post
                         </Button>
                     )}
