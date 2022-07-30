@@ -27,6 +27,7 @@ const App = () => {
                 <Route path="/posts/write" element={<PostWritePage />} />
                 <Route path="/posts/:postId" element={<PostPage />} />
             </Routes>
+            <footer></footer>
         </div>
     );
 };
